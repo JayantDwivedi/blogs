@@ -2,8 +2,11 @@ import Image from "next/image";
 import { Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import { phoneNumberValidations } from "@/constant/validations";
+import { useState } from "react";
+import OtpModal from "@/component/OtpModal";
 
 export default function Home() {
+  const [openModal, setOpenModal] = useState({ open: false, data: {} });
   return (
     <div className="container px-4 md:mx-auto md:px-0 flex items-center justify-between gap-8 md:gap-0 flex-col md:flex-row  h-[calc(100vh-5rem)]">
       <div className="w-full md:w-1/2">
@@ -17,8 +20,12 @@ export default function Home() {
         <Formik
           initialValues={{ phoneNumber: "" }}
           validationSchema={phoneNumberValidations}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values) => {
             console.log("Submited phone number", values);
+            setOpenModal({
+              open: true,
+              data: { showPhoneNumber: false, otp: true },
+            });
           }}
         >
           {({
@@ -28,7 +35,6 @@ export default function Home() {
             handleChange,
             handleBlur,
             handleSubmit,
-            isSubmitting,
           }) => (
             <form
               onSubmit={handleSubmit}
@@ -37,6 +43,7 @@ export default function Home() {
               <div className="flex flex-col">
                 <TextField
                   name="phoneNumber"
+                  variant="outlined"
                   onChange={handleChange}
                   value={values.phoneNumber}
                   onBlur={handleBlur}
@@ -62,11 +69,19 @@ export default function Home() {
             </form>
           )}
         </Formik>
-        {/* </div> */}
       </div>
       <div className="relative h-full md:h-[60%] w-full md:w-[35%] aspect-video">
         <Image src="/heroImg.jpg" layout="fill" alt="heroImg" />
       </div>
+      <OtpModal
+        openModal={openModal}
+        closeModal={() =>
+          setOpenModal({
+            open: false,
+            data: { showPhoneNumber: false, otp: false },
+          })
+        }
+      />
     </div>
   );
 }

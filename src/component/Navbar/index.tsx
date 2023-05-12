@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const Navbar = () => {
   return (
@@ -12,7 +12,7 @@ const Navbar = () => {
         variant="contained"
         className="bg-yellow hover:bg-yellow text-black capitalize rounded-3xl px-12"
       >
-        Login
+        Sign up
       </Button>
     </div>
   );
