@@ -2,11 +2,16 @@ import Image from "next/image";
 import { Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import { phoneNumberValidations } from "@/constant/validations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OtpModal from "@/component/OtpModal";
+import { Router, useRouter } from "next/router";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState({ open: false, data: {} });
+  const router = useRouter();
+  useEffect(() => {
+    router.replace(router.pathname, "/");
+  }, []);
   return (
     <div className="container px-4 md:mx-auto md:px-0 flex items-center justify-between gap-8 md:gap-0 flex-col md:flex-row  h-[calc(100vh-5rem)]">
       <div className="w-full md:w-1/2">

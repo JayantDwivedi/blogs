@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Formik } from "formik";
 import { phoneNumberValidations, validateOtp } from "@/constant/validations";
 import { useRouter } from "next/router";
+import { setLocalStorage } from "@/utils/localStorage";
 
 export default function OtpModal({ openModal, closeModal }: any) {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function OtpModal({ openModal, closeModal }: any) {
           initialValues={{ otp: "" }}
           validationSchema={validateOtp}
           onSubmit={(values) => {
-            console.log("Submited phone number", values);
+            setLocalStorage("otp", values);
             router.push("/blogs");
             closeModal();
           }}
