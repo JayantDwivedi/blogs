@@ -8,8 +8,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Formik } from "formik";
 import { phoneNumberValidations, validateOtp } from "@/constant/validations";
+import { useRouter } from "next/router";
 
 export default function OtpModal({ openModal, closeModal }: any) {
+  const router = useRouter();
   return (
     <div className="w-[30%]">
       <Dialog open={openModal.open} onClose={closeModal} maxWidth="xs">
@@ -27,6 +29,7 @@ export default function OtpModal({ openModal, closeModal }: any) {
           validationSchema={validateOtp}
           onSubmit={(values) => {
             console.log("Submited phone number", values);
+            router.push("/blogs");
             closeModal();
           }}
         >
