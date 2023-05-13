@@ -71,7 +71,9 @@ export default function OtpModal({ openModal, closeModal }: any) {
                   Cancel
                 </Button>
                 <Button
-                  className="bg-yellow hover:bg-yellow text-black capitalize"
+                  color="warning"
+                  variant="outlined"
+                  className="capitalize"
                   type="submit"
                 >
                   Validate

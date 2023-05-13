@@ -29,6 +29,7 @@ const Navbar = () => {
   };
   const handleClose = () => {
     clearLocalStorage();
+    router.push("/");
     setAnchorEl(null);
   };
 
