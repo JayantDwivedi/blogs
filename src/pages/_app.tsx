@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Navbar />
       <Component {...pageProps} />
-      <ToastContainer limit={1} />
+      <ToastContainer />
     </>
   );
 }
